@@ -39,7 +39,8 @@ export default function SignupForm() {
                     "Content-type": "application/json",
                 },
             }
-            const { data } = await axios.post('http://localhost:5000/api/users/login', {
+            const { data } = await axios.post('http://localhost:4000/api/users/register', {
+                name,
                 email,
                 password
             }, config);
@@ -52,6 +53,7 @@ export default function SignupForm() {
             localStorage.setItem('userToken', data.token);
             setIsLoading(false);
             // navigate('/user/activity')
+            navigate('/dashboard')
         } catch (error) {
             setEmail("")
             setPassword("")
