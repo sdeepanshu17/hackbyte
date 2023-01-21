@@ -47,7 +47,7 @@ export default function LoginForm() {
                     "Content-type": "application/json",
                 },
             }
-            const { data } = await axios.post('http://localhost:5000/api/users/login', {
+            const { data } = await axios.post('http://localhost:4000/api/users/login', {
                 email,
                 password
             }, config);
@@ -59,6 +59,7 @@ export default function LoginForm() {
 
             localStorage.setItem('userToken', data.token);
             setIsLoading(false);
+            navigate('/dashboard', { replace: true });
             // navigate('/user/activity')
         } catch (error) {
             // toast({

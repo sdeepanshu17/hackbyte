@@ -286,7 +286,7 @@ export default function UserPage() {
 
         <MenuItem sx={{ color: 'error.main' }}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
-          Delete
+          Remove
         </MenuItem>
       </Popover>
     </>
