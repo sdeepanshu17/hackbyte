@@ -16,6 +16,11 @@ const navConfig = [
     path: '/dashboard/friends',
     icon: icon('ic_user'),
   },
+  {
+    title: 'new Split',
+    path: '/dashboard/newSplit',
+    icon: icon('ic_user'),
+  },
   // {
   //   title: 'product',
   //   path: '/dashboard/products',
