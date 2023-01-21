@@ -27,15 +27,6 @@ export default function LoginForm() {
     const submitHandler = async () => {
         setIsLoading(true);
         if (!email || !password) {
-            // toast({
-            //     title: 'Alert',
-            //     description: "Email and Passoword Required!!",
-            //     status: 'error',
-            //     position: 'bottom-right',
-            //     variant: 'subtle',
-            //     duration: 3000,
-            //     isClosable: true,
-            // });
             setIsLoading(false);
             return;
         }
@@ -62,15 +53,6 @@ export default function LoginForm() {
             navigate('/dashboard', { replace: true });
             // navigate('/user/activity')
         } catch (error) {
-            // toast({
-            //     title: 'Error',
-            //     description: "Enter valid Email OR Password",
-            //     status: 'error',
-            //     position: 'bottom-right',
-            //     variant: 'subtle',
-            //     duration: 3000,
-            //     isClosable: true,
-            // });
             setEmail("")
             setPassword("")
             setIsLoading(false);
@@ -99,8 +81,8 @@ export default function LoginForm() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
-        <Checkbox name="remember" label="Remember me" />
+      <Stack direction="row" alignItems="right" justifyContent="space-between" sx={{ my: 2 }}>
+        {/* <Checkbox name="remember" label="Remember me" /> */}
         <Link variant="subtitle2" underline="hover">
           Forgot password?
         </Link>
