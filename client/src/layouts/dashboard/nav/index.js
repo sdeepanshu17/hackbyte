@@ -14,6 +14,7 @@ import Scrollbar from '../../../components/scrollbar';
 import NavSection from '../../../components/nav-section';
 //
 import navConfig from './config';
+import { ContextState } from '../../../Context/Provider';
 
 // ----------------------------------------------------------------------
 
@@ -35,6 +36,7 @@ Nav.propTypes = {
 };
 
 export default function Nav({ openNav, onCloseNav }) {
+  const {user} = ContextState()
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');

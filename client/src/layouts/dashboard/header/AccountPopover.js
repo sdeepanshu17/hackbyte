@@ -22,6 +22,7 @@ const MENU_OPTIONS = [
   },
 ];
 
+
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {

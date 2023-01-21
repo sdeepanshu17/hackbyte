@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema(
         dept:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'Dept'
+        },
+        addr:{
+            type:String,
+            unique:true
         }
     },{
         timestamps:true
