@@ -17,6 +17,16 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Add Money',
+    path: '/dashboard/addmoney',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'Transfer Money',
+    path: '/dashboard/transfermoney',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'new Split',
     path: '/dashboard/newSplit',
     icon: icon('ic_user'),

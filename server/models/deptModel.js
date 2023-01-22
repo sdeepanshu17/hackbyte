@@ -18,6 +18,19 @@ const deptSchema = mongoose.Schema({
                 default:0
             }
         }
+    ],
+    from:[
+        {
+            user:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:'User'
+            },
+            amount:{
+                type:Number,
+                required:true,
+                default:0
+            }
+        }
     ]
 },{
     timestamps:true

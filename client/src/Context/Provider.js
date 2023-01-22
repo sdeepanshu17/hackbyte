@@ -7,16 +7,17 @@ const Context = createContext();
 const ContextProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState();
+    // console.log("USERHERE");
+    // console.log(user);
     const userToken = localStorage.getItem('userToken');
     const [fetchAgain, setFetchAgain] = useState(false);
 
     useEffect(() => {
 
         if (!userToken) {
-            // navigate('/login');
+            // navigate('/dashboard');
             return;
         }
-
         const user = async () => {
             const config = {
                 headers: {
