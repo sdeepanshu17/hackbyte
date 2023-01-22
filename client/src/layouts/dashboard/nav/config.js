@@ -17,6 +17,11 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'Add Friends',
+    path: '/dashboard/addfriend',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'Add Money',
     path: '/dashboard/addmoney',
     icon: icon('ic_user'),

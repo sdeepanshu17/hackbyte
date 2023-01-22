@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import axios from 'axios';
+import { Link, Stack, MenuItem, FormControl, InputLabel, Select, Box, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import Iconify from '../../components/iconify';
-
+import { ContextState } from '../../Context/Provider';
+import SelectForm from './SelectForm';
 
 // ----------------------------------------------------------------------
 
@@ -15,26 +15,70 @@ export default function SplitForm() {
     navigate('/dashboard', { replace: true });
   };
 
-    const [email, setEmail] = useState('');
-    const [amount, setAmount] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    // const toast = useToast();
+  const handleSelectChange = (event) => {
+    setFriend(event.target.value);
+  };
 
-    const submitHandler = async () => {
-        setIsLoading(true);
-        if (!email || !amount || amount<=0) {
-            setIsLoading(false);
-        }
+  const [email, setEmail] = useState('');
+  const [amount, setAmount] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { user, userToken } = ContextState();
+  const [userFriends, setUserFriends] = useState([]);
+  const [friend, setFriend] = useState('');
+
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        };
+        const { data } = await axios.get('http://localhost:4000/api/users/getfriends', config);
+        setUserFriends(data.friends);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getFriends();
+  }, [userFriends]);
+
+  const submitHandler = async () => {
+    setIsLoading(true);
+    if (!email || !amount || amount <= 0) {
+      setIsLoading(false);
     }
+
+    console.log(friend);
+  };
 
   return (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" onChange={(e)=>setEmail(e.target.value)} />
-        <TextField name="amount" type={"number"} label="Enter Amount" onChange={(e)=>setAmount(e.target.value)} />
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={()=>submitHandler()}>
-        Login
-      </LoadingButton>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={friend}
+              label="Age"
+              onChange={handleSelectChange}
+            >
+              {userFriends &&
+                userFriends.map((userFriend) => (
+                  <MenuItem key={user.addr} value={userFriend._id}>
+                    {userFriend.name}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>
+        </Box>
+        <TextField name="amount" type={'number'} label="Enter Amount" onChange={(e) => setAmount(e.target.value)} />
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={() => submitHandler()}>
+          Split
+        </LoadingButton>
       </Stack>
     </>
   );

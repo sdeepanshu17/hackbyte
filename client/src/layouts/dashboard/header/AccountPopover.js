@@ -3,13 +3,9 @@ import { useState } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
-<<<<<<< HEAD
-import account from '../../../pages/_mock/account';
-=======
 import { useNavigate } from 'react-router-dom';
-import account from '../../../_mock/account';
+import account from '../../../pages/_mock/account';
 import { ContextState } from '../../../Context/Provider';
->>>>>>> a14004f (Add Money & Transfer Created)
 
 // ----------------------------------------------------------------------
 
@@ -28,14 +24,13 @@ const MENU_OPTIONS = [
   },
 ];
 
-
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {user} = ContextState();
+  const { user } = ContextState();
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -46,9 +41,9 @@ export default function AccountPopover() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('userToken')
+    localStorage.removeItem('userToken');
     navigate('/login');
-  }
+  };
 
   return (
     <>

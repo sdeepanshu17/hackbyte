@@ -148,45 +148,45 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
-  const {user,userToken} = ContextState();
-  const [userFriends,setUserFriends] = useState();
+  const { user, userToken } = ContextState();
+  const [userFriends, setUserFriends] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     const getFriends = async () => {
       try {
         const config = {
           headers: {
             Authorization: `Bearer ${userToken}`,
           },
-        }
-        const {data} = await axios.get('http://localhost:4000/api/users/getfriends',config);
+        };
+        const { data } = await axios.get('http://localhost:4000/api/users/getfriends', config);
         setUserFriends(data.friends);
-
       } catch (error) {
         console.log(error.message);
       }
-    }
+    };
     getFriends();
-  },[userFriends])
+  }, [userFriends]);
 
-  const handleRemoveUser = async(id)=>{
+  const handleRemoveUser = async (id) => {
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${userToken}`,
         },
-      }
-      const {data} = await axios.delete(`http://localhost:4000/api/users/removefriend`,
-      {
-        friendId:id
-      },config);
+      };
+      const { data } = await axios.delete(
+        `http://localhost:4000/api/users/removefriend`,
+        {
+          friendId: id,
+        },
+        config
+      );
       setUserFriends(data.friends);
-      
     } catch (error) {
       console.log(error.message);
     }
-  }
-
+  };
 
   return (
     <>
@@ -199,9 +199,9 @@ export default function UserPage() {
           <Typography variant="h4" gutterBottom>
             My Friends
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             Add New Friend
-          </Button>
+          </Button> */}
         </Stack>
 
         <Card>
@@ -217,7 +217,7 @@ export default function UserPage() {
                   rowCount={USERLIST.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
-                // onSelectAllClick={handleSelectAllClick}
+                  // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {/* {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => { */}
@@ -327,9 +327,7 @@ export default function UserPage() {
           Edit
         </MenuItem> */}
 
-        <MenuItem sx={{ color: 'error.main' }}
-        onClick={()=>handleRemoveUser()}
-          >
+        <MenuItem sx={{ color: 'error.main' }} onClick={() => handleRemoveUser()}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Remove
         </MenuItem>
