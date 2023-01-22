@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // components
 import Iconify from '../../../components/iconify';
+import { ContextState } from '../../../Context/Provider';
 
 
 // ----------------------------------------------------------------------
@@ -16,6 +17,9 @@ export default function SignupForm() {
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const {user} = ContextState();
+    console.log(user);
 
     const handleClick = () => {
         navigate('/dashboard', { replace: true });

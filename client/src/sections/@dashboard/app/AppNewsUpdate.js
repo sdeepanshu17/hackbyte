@@ -15,7 +15,7 @@ AppNewsUpdate.propTypes = {
   list: PropTypes.array.isRequired,
 };
 
-export default function AppNewsUpdate({ title, subheader, list, ...other }) {
+export default function AppNewsUpdate({ title, subheader, list,amount, ...other }) {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -51,7 +51,7 @@ NewsItem.propTypes = {
 };
 
 function NewsItem({ news }) {
-  const { image, title, description, postedAt } = news;
+  const { image, title, description, postedAt , amount } = news;
 
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
@@ -59,7 +59,7 @@ function NewsItem({ news }) {
 
       <Box sx={{ minWidth: 240, flexGrow: 1 }}>
         <Link color="inherit" variant="subtitle2" underline="hover" noWrap>
-          {title}
+          {title} - {amount}
         </Link>
 
         <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>

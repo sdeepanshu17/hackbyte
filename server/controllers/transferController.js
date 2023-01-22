@@ -88,6 +88,8 @@ const GetUserTransaction = async(req,res)=>{
         console.log(userId);
         const transaction = await Transaction.find({$or:[{from:userId.toString()},{to:userId.toString()}]})
             .sort("createdAt")
+            .populate("from","name")
+            .populate("to","name")
         res.status(200).json({
             transaction
         })
