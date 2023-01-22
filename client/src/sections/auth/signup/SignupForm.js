@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { ToastContainer, toast } from 'react-toastify';
 import Web3 from 'web3';
@@ -20,7 +20,7 @@ const web3 = new Web3();
 export default function SignupForm() {
 
     const address = web3.eth.accounts.create();
-    const addr =address.address;
+    const addr = address.address;
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -96,9 +96,10 @@ export default function SignupForm() {
             localStorage.setItem('userToken', data.token);
             setIsLoading(false);
             // navigate('/user/activity')
-            navigate('/dashboard')
+            navigate('/dashboard');
         } catch (error) {
-            toast.error("Error Occured!", {
+            console.log(error);
+            toast.error(error.response.data.message, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -144,7 +145,7 @@ export default function SignupForm() {
 
             <Stack direction="row" alignItems="right" justifyContent="space-between" sx={{ my: 2 }}>
                 <Link variant="subtitle2" underline="hover">
-                    Forgot password?
+                    {/* Forgot password? */}
                 </Link>
             </Stack>
 

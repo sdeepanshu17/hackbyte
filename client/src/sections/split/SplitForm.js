@@ -14,10 +14,6 @@ import Iconify from '../../components/iconify';
 export default function SplitForm({state}) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/dashboard', { replace: true });
-  };
-
     const [email, setEmail] = useState('');
     const [amount, setAmount] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -89,6 +85,7 @@ export default function SplitForm({state}) {
             progress: undefined,
             theme: "colored",
           });
+          setIsLoading(false);
           console.log(error);
         }
 
@@ -100,7 +97,7 @@ export default function SplitForm({state}) {
       <ToastContainer />
         <TextField name="email" label="Email address" id="email" onChange={(e)=>setEmail(e.target.value)} />
         <TextField name="amount" type={"number"} label="Enter Amount" onChange={(e)=>setAmount(e.target.value)} />
-      <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={()=>submitHandler()}>
+      <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isLoading} onClick={()=>submitHandler()}>
         Send Money
       </LoadingButton>
       </Stack>
