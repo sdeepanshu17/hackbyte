@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 // @mui
 import {
   Card,
@@ -30,6 +31,7 @@ import Scrollbar from '../components/scrollbar';
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
 import USERLIST from './_mock/user';
+import { ContextState } from '../Context/Provider';
 
 // ----------------------------------------------------------------------
 
@@ -146,6 +148,46 @@ export default function UserPage() {
 
   const isNotFound = !filteredUsers.length && !!filterName;
 
+  const {user,userToken} = ContextState();
+  const [userFriends,setUserFriends] = useState();
+
+  useEffect(()=>{
+    const getFriends = async () => {
+      try {
+        const config = {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+        const {data} = await axios.get('http://localhost:4000/api/users/getfriends',config);
+        setUserFriends(data.friends);
+
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    getFriends();
+  },[userFriends])
+
+  const handleRemoveUser = async(id)=>{
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+      const {data} = await axios.delete(`http://localhost:4000/api/users/removefriend`,
+      {
+        friendId:id
+      },config);
+      setUserFriends(data.friends);
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
   return (
     <>
       <Helmet>
@@ -178,12 +220,13 @@ export default function UserPage() {
                 // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, email, avatarUrl } = row;
+                  {/* {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => { */}
+                  {userFriends?.map((row) => {
+                    const { _id, name, role, status, company, avatarUrl, isVerified } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox">
+                      <TableRow hover key={_id} tabIndex={-1} role="checkbox">
                         {/* <TableCell padding="checkbox">
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
                         </TableCell> */}
@@ -284,7 +327,9 @@ export default function UserPage() {
           Edit
         </MenuItem> */}
 
-        <MenuItem sx={{ color: 'error.main' }}>
+        <MenuItem sx={{ color: 'error.main' }}
+        onClick={()=>handleRemoveUser()}
+          >
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Remove
         </MenuItem>

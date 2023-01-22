@@ -9,6 +9,8 @@ import SignupPage from './pages/SignUpPage';
 import Page404 from './pages/Page404';
 import NewSplit from './pages/NewSplit';
 import DashboardAppPage from './pages/DashboardAppPage';
+import AddMoney from './pages/AddMoney';
+import TransferMoney from './pages/TransferMoney';
 
 export default function Router() {
   const routes = useRoutes([
@@ -20,6 +22,9 @@ export default function Router() {
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'friends', element: <UserPage /> },
         { path: 'newSplit', element: <NewSplit /> },
+        { path: 'addmoney', element: <AddMoney /> },
+        { path: 'transfermoney', element: <TransferMoney /> },
+
         // { path: 'products', element: <ProductsPage /> },
         // { path: 'blog', element: <BlogPage /> },
       ],

@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema(
         name:{
             type:String,
             require:true,
+            unique:true
         },
         email:{
             type:String,
@@ -26,10 +27,10 @@ const userSchema = mongoose.Schema(
             type:mongoose.Schema.Types.ObjectId,
             ref:'Dept'
         },
-        addr:{
-            type:String,
-            unique:true
-        }
+        friends:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
+        }]
     },{
         timestamps:true
     }
@@ -48,8 +49,8 @@ userSchema.pre('save',async function(next){
 });
 
 userSchema.post('save', async function (doc) {
-    console.log(doc);
-    await Dept.create({
+    // console.log(doc);
+    const dept = await Dept.create({
         user:doc._id,
         to:[{
             user:doc._id,
