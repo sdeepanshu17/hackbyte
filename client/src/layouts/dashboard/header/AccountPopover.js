@@ -4,7 +4,7 @@ import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
 import { useNavigate } from 'react-router-dom';
-import account from '../../../pages/_mock/account';
+// import account from '../../../_mock/account';
 import { ContextState } from '../../../Context/Provider';
 
 // ----------------------------------------------------------------------
@@ -64,7 +64,8 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        {/* <Avatar src='/assets/images/avatars/avatar_default.jpg' alt="photoURL" /> */}
+        <Avatar src="../../../../public/assets/images/avatars/avatar_default.jpg" alt="photoURL" />
       </IconButton>
 
       <Popover

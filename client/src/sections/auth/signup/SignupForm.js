@@ -5,15 +5,22 @@ import axios from 'axios'
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { ToastContainer, toast } from 'react-toastify';
+import Web3 from 'web3';
 import 'react-toastify/dist/ReactToastify.css';
 // components
 import Iconify from '../../../components/iconify';
 import { ContextState } from '../../../Context/Provider';
 
+// Initialize web3.js
+const web3 = new Web3();
+
 
 // ----------------------------------------------------------------------
 
 export default function SignupForm() {
+
+    const address = web3.eth.accounts.create();
+    const addr =address.address;
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +84,8 @@ export default function SignupForm() {
             const { data } = await axios.post('http://localhost:4000/api/users/register', {
                 name,
                 email,
-                password
+                password,
+                addr
             }, config);
 
             console.log(data);
