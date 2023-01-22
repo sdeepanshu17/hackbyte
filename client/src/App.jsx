@@ -14,41 +14,48 @@ import ScrollToTop from './components/scroll-to-top';
 
 export default function App() {
 
-  // const [state, setState] = useState({
-  //   provider: null,
-  //   signer: null,
-  //   contract: null
-  // })
+  const [state, setState] = useState({
+    provider: null,
+    signer: null,
+    contract: null
+  })
+  const [account,setAccount]=useState("None");
+  useEffect(() => {
 
-  // useEffect(() => {
-  //   const connectWallet = async () => {
-  //     const contractAddress = "0xa7C863a55c0A9D6589654065e2dB71177fBB7eE6"
-  //     const contractAbi = abi.abi
-  //     console.log(contractAbi)
-  //     try {
+    const connectWallet = async () => {
+      const contractAddress = "0xa7C863a55c0A9D6589654065e2dB71177fBB7eE6"
+      const contractAbi = abi.abi
+      console.log(contractAbi)
+      try {
 
-  //       const { ethereum } = window
-  //       if (ethereum) {
-  //         const accounts = await ethereum.request({ method: 'eth_requestAccounts', })
-  //       }
-  //       const provider = new ethers.providers.Web3Provider(ethereum)
-  //       const signer = provider.getSigner()
-  //       const contract = new ethers.Contract(contractAddress, contractAbi, signer)
-  //       setState({ provider, signer, contract })
-  //     }
-  //     catch (error) {
-  //       console.log(error)
-  //     }
-  //   };
-  //   connectWallet();
-  // }, []);
+        const { ethereum } = window
+        if (ethereum) {
+          const account = await ethereum.request({ method: 'eth_requestAccounts', })
+        
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, contractAbi, signer)
+        setAccount(account);
+        setState({ provider, signer, contract })
+        }
+        else
+        {
+            alert("Please Install Meta Mask")
+        }
+      }
+      catch (error) {
+        console.log(error)
+      }
+    };
+    connectWallet();
+  }, []);
 
   // console.log(state);
   return (
     <ThemeProvider>
         <ScrollToTop />
         {/* <StyledChart /> */}
-        <Router />
+        <Router state={state} />
     </ThemeProvider>
   );
 }

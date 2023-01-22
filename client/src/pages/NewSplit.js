@@ -39,7 +39,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function NewSplit() {
+export default function NewSplit({state}) {
     const mdUp = useResponsive('up', 'md');
 
     return (
@@ -55,7 +55,7 @@ export default function NewSplit() {
                             <Typography variant="h4" gutterBottom marginBottom={2}>
                                 Enter Split Details
                             </Typography>
-                            <SplitForm />
+                            <SplitForm state={state}/>
                         </StyledContent>
                     </Container>
                 </StyledSection>

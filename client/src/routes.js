@@ -12,7 +12,7 @@ import DashboardAppPage from './pages/DashboardAppPage';
 import AddMoney from './pages/AddMoney';
 import TransferMoney from './pages/TransferMoney';
 
-export default function Router() {
+export default function Router({state}) {
   const routes = useRoutes([
     {
       path: '/dashboard',
@@ -21,7 +21,7 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'friends', element: <UserPage /> },
-        { path: 'newSplit', element: <NewSplit /> },
+        { path: 'newSplit', element: <NewSplit state={state} /> },
         { path: 'addmoney', element: <AddMoney /> },
         { path: 'transfermoney', element: <TransferMoney /> },
 

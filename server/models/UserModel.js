@@ -30,7 +30,11 @@ const userSchema = mongoose.Schema(
         friends:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:'User'
-        }]
+        }],
+        addr:{
+            type:String,
+            unique:true,
+        }
     },{
         timestamps:true
     }
