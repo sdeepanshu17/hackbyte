@@ -24,9 +24,6 @@ export default function Router({state}) {
         { path: 'newSplit', element: <NewSplit state={state} /> },
         { path: 'addmoney', element: <AddMoney /> },
         { path: 'transfermoney', element: <TransferMoney /> },
-
-        // { path: 'products', element: <ProductsPage /> },
-        // { path: 'blog', element: <BlogPage /> },
       ],
     },
     {

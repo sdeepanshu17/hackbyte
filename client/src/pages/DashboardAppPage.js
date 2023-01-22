@@ -1,19 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-// @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-// components
 import Iconify from '../components/iconify';
-// sections
 import {
   AppNewsUpdate,
   AppWidgetSummary,
 } from '../sections/@dashboard/app';
 import { ContextState } from '../Context/Provider';
-
-// ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
   const theme = useTheme();
@@ -33,7 +28,6 @@ export default function DashboardAppPage() {
       const { data } = await axios.get('http://localhost:4000/api/expense/transactions', config);
 
       if (data) {
-        // console.log(data.transaction);
         setTransactions(data.transaction);
         setIsLoading(false);
 
@@ -46,9 +40,6 @@ export default function DashboardAppPage() {
     }
 
   }
-
-  // console.log(isLoading);
-  // console.log(transactions);
 
   useEffect(() => {
     getTransactions();
