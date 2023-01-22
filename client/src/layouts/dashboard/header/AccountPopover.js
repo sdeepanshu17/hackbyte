@@ -7,11 +7,30 @@ import { useNavigate } from 'react-router-dom';
 import account from '../../../pages/_mock/account';
 import { ContextState } from '../../../Context/Provider';
 
+// ----------------------------------------------------------------------
+
+const MENU_OPTIONS = [
+  {
+    label: 'Home',
+    icon: 'eva:home-fill',
+  },
+  {
+    label: 'Profile',
+    icon: 'eva:person-fill',
+  },
+  {
+    label: 'Settings',
+    icon: 'eva:settings-2-fill',
+  },
+];
+
+// ----------------------------------------------------------------------
+
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {user} = ContextState();
+  const { user } = ContextState();
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -22,9 +41,9 @@ export default function AccountPopover() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('userToken')
+    localStorage.removeItem('userToken');
     navigate('/login');
-  }
+  };
 
   return (
     <>
@@ -45,7 +64,8 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        {/* <Avatar src='/assets/images/avatars/avatar_default.jpg' alt="photoURL" /> */}
+        <Avatar src="../../../../public/assets/images/avatars/avatar_default.jpg" alt="photoURL" />
       </IconButton>
 
       <Popover

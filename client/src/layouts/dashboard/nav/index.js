@@ -12,7 +12,6 @@ import NavSection from '../../../components/nav-section';
 import navConfig from './config';
 import { ContextState } from '../../../Context/Provider';
 
-
 const NAV_WIDTH = 280;
 
 const StyledAccount = styled('div')(({ theme }) => ({
@@ -29,7 +28,7 @@ Nav.propTypes = {
 };
 
 export default function Nav({ openNav, onCloseNav }) {
-  const {user} = ContextState()
+  const { user } = ContextState();
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
@@ -45,7 +44,7 @@ export default function Nav({ openNav, onCloseNav }) {
     <Scrollbar
       sx={{
         height: 1,
-        backgroundColor: "#fff",
+        backgroundColor: '#fff',
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
@@ -74,7 +73,6 @@ export default function Nav({ openNav, onCloseNav }) {
       <NavSection data={navConfig} />
 
       <Box sx={{ flexGrow: 1 }} />
-
     </Scrollbar>
   );
 

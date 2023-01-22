@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { styled } from '@mui/material/styles';
 import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
 // hooks
-import { SplitForm } from '../sections/split';
+import { AddFriend } from '../sections/addfriend';
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
@@ -27,7 +27,7 @@ const StyledSection = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   boxShadow: theme.customShadows.card,
-  backgroundColor: '#fff',
+  backgroundColor: theme.palette.background.default,
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
@@ -39,7 +39,7 @@ const StyledContent = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function NewSplit({ state }) {
+export default function NewSplit() {
   const mdUp = useResponsive('up', 'md');
 
   return (
@@ -53,9 +53,9 @@ export default function NewSplit({ state }) {
           <Container maxWidth="sm">
             <StyledContent>
               <Typography variant="h4" gutterBottom marginBottom={2}>
-                Enter Split Details
+                Add Friend
               </Typography>
-              <SplitForm state={state} />
+              <AddFriend />
             </StyledContent>
           </Container>
         </StyledSection>

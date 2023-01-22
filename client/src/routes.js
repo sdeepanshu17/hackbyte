@@ -11,8 +11,9 @@ import NewSplit from './pages/NewSplit';
 import DashboardAppPage from './pages/DashboardAppPage';
 import AddMoney from './pages/AddMoney';
 import TransferMoney from './pages/TransferMoney';
+import AddFriend from './pages/AddFriend';
 
-export default function Router({state}) {
+export default function Router({ state }) {
   const routes = useRoutes([
     {
       path: '/dashboard',
@@ -24,6 +25,10 @@ export default function Router({state}) {
         { path: 'newSplit', element: <NewSplit state={state} /> },
         { path: 'addmoney', element: <AddMoney /> },
         { path: 'transfermoney', element: <TransferMoney /> },
+        { path: 'addfriend', element: <AddFriend /> },
+
+        // { path: 'products', element: <ProductsPage /> },
+        // { path: 'blog', element: <BlogPage /> },
       ],
     },
     {
