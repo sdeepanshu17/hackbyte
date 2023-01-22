@@ -29,7 +29,7 @@ import Scrollbar from '../components/scrollbar';
 // sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
 // mock
-import USERLIST from '../_mock/user';
+import USERLIST from './_mock/user';
 
 // ----------------------------------------------------------------------
 
@@ -175,11 +175,11 @@ export default function UserPage() {
                   rowCount={USERLIST.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
-                  // onSelectAllClick={handleSelectAllClick}
+                // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                    const { id, name, email, avatarUrl } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (

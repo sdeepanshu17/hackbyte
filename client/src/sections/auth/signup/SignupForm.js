@@ -4,6 +4,8 @@ import axios from 'axios'
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // components
 import Iconify from '../../../components/iconify';
 
@@ -28,7 +30,36 @@ export default function SignupForm() {
 
     const submitHandler = async () => {
         setIsLoading(true);
-        if (!email || !password) {
+        console.log(name);
+        console.log(email);
+        console.log(password);
+        console.log(cnfPassword);
+
+        if (!email || !password || !cnfPassword || !name) {
+            toast.warn("Please Fill All the fields", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            setIsLoading(false);
+            return;
+        }
+        if (password !== cnfPassword){
+            toast.warn("Passwords do not match", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setIsLoading(false);
             return;
         }
@@ -47,16 +78,24 @@ export default function SignupForm() {
 
             console.log(data);
 
-            setEmail('');
-            setPassword('');
+            // setEmail('');
+            // setPassword('');
 
             localStorage.setItem('userToken', data.token);
             setIsLoading(false);
             // navigate('/user/activity')
             navigate('/dashboard')
         } catch (error) {
-            setEmail("")
-            setPassword("")
+            toast.error("Error Occured!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
             setIsLoading(false);
         }
     }
@@ -64,6 +103,7 @@ export default function SignupForm() {
     return (
         <>
             <Stack spacing={3}>
+            <ToastContainer />
                 <TextField name="name" label="Enter name" onChange={(e) => setName(e.target.value)} />
                 <TextField name="email" label="Email address" onChange={(e) => setEmail(e.target.value)} />
 
@@ -86,19 +126,18 @@ export default function SignupForm() {
                     name="cnfPassword"
                     type='password'
                     label="Confirm Password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setCnfPassword(e.target.value)}
                 />
             </Stack>
 
             <Stack direction="row" alignItems="right" justifyContent="space-between" sx={{ my: 2 }}>
-                {/* <Checkbox name="remember" label="Remember me" /> */}
                 <Link variant="subtitle2" underline="hover">
                     Forgot password?
                 </Link>
             </Stack>
 
-            <LoadingButton fullWidth size="large" type="submit" variant="contained" onClick={() => submitHandler()}>
-                Login
+            <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isLoading} onClick={submitHandler}>
+                Sign Up
             </LoadingButton>
         </>
     );
