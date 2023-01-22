@@ -23,28 +23,18 @@ import {
   TableContainer,
   TablePagination,
 } from '@mui/material';
-// components
+
 import Label from '../components/label';
 import Iconify from '../components/iconify';
 import Scrollbar from '../components/scrollbar';
-// sections
 import { UserListHead, UserListToolbar } from '../sections/@dashboard/user';
-// mock
 import USERLIST from './_mock/user';
 import { ContextState } from '../Context/Provider';
 
-// ----------------------------------------------------------------------
-
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  // { id: 'company', label: 'Company', alignRight: false },
-  // { id: 'role', label: 'Role', alignRight: false },
-  // { id: 'isVerified', label: 'Verified', alignRight: false },
-  // { id: 'status', label: 'Status', alignRight: false },
   { id: 'Options', label: 'Options', alignRight: true },
 ];
-
-// ----------------------------------------------------------------------
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -217,20 +207,14 @@ export default function UserPage() {
                   rowCount={USERLIST.length}
                   numSelected={selected.length}
                   onRequestSort={handleRequestSort}
-                  // onSelectAllClick={handleSelectAllClick}
                 />
                 <TableBody>
-                  {/* {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => { */}
                   {userFriends?.map((row) => {
                     const { _id, name, role, status, company, avatarUrl, isVerified } = row;
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
                       <TableRow hover key={_id} tabIndex={-1} role="checkbox">
-                        {/* <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
-                        </TableCell> */}
-
                         <TableCell size="large" align="right" component="th" scope="row" padding="checkbox">
                           <Stack direction="row" alignItems="center" spacing={2}>
                             <Avatar alt={name} src={avatarUrl} />
@@ -239,16 +223,6 @@ export default function UserPage() {
                             </Typography>
                           </Stack>
                         </TableCell>
-
-                        {/* <TableCell align="left">{company}</TableCell> */}
-
-                        {/* <TableCell align="left">{role}</TableCell> */}
-
-                        {/* <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell> */}
-
-                        {/* <TableCell align="left">
-                          <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
-                        </TableCell> */}
 
                         <TableCell align="right">
                           <IconButton color="inherit" onClick={handleOpenMenu}>
@@ -322,11 +296,6 @@ export default function UserPage() {
           },
         }}
       >
-        {/* <MenuItem>
-          <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
-        </MenuItem> */}
-
         <MenuItem sx={{ color: 'error.main' }} onClick={() => handleRemoveUser()}>
           <Iconify icon={'eva:trash-2-outline'} sx={{ mr: 2 }} />
           Remove

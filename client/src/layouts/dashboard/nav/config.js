@@ -17,44 +17,9 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
-    title: 'Add Friends',
-    path: '/dashboard/addfriend',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'Add Money',
-    path: '/dashboard/addmoney',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'Transfer Money',
-    path: '/dashboard/transfermoney',
-    icon: icon('ic_user'),
-  },
-  {
     title: 'new Split',
     path: '/dashboard/newSplit',
-    icon: icon('ic_user'),
-  },
-  // {
-  //   title: 'product',
-  //   path: '/dashboard/products',
-  //   icon: icon('ic_cart'),
-  // },
-  // {
-  //   title: 'blog',
-  //   path: '/dashboard/blog',
-  //   icon: icon('ic_blog'),
-  // },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    icon: icon('ic_money'),
   },
 ];
 

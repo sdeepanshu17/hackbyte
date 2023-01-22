@@ -13,7 +13,7 @@ import AddMoney from './pages/AddMoney';
 import TransferMoney from './pages/TransferMoney';
 import AddFriend from './pages/AddFriend';
 
-export default function Router({state}) {
+export default function Router({ state }) {
   const routes = useRoutes([
     {
       path: '/dashboard',

@@ -27,7 +27,7 @@ const StyledSection = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   boxShadow: theme.customShadows.card,
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: '#fff',
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({

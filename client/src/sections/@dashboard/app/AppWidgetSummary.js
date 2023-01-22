@@ -1,13 +1,8 @@
-// @mui
 import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
-// utils
 import { fShortenNumber } from '../../../utils/formatNumber';
-// components
 import Iconify from '../../../components/iconify';
-
-// ----------------------------------------------------------------------
 
 const StyledIcon = styled('div')(({ theme }) => ({
   margin: 'auto',
@@ -20,7 +15,6 @@ const StyledIcon = styled('div')(({ theme }) => ({
   marginBottom: theme.spacing(3),
 }));
 
-// ----------------------------------------------------------------------
 
 AppWidgetSummary.propTypes = {
   color: PropTypes.string,

@@ -4,7 +4,7 @@ import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 // mocks_
 import { useNavigate } from 'react-router-dom';
-// import account from '../../../_mock/account';
+import account from '../../../pages/_mock/account';
 import { ContextState } from '../../../Context/Provider';
 
 // ----------------------------------------------------------------------
@@ -95,16 +95,6 @@ export default function AccountPopover() {
             {user?.email}
           </Typography>
         </Box>
-
-        <Divider sx={{ borderStyle: 'dashed' }} />
-
-        <Stack sx={{ p: 1 }}>
-          {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} onClick={handleClose}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
